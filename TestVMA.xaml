@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="VMALE.TestVMA"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VMALE"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" FontSize="30" Margin="0,41,0,0" Text="Appareils prêts à courir" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Content="Retour" FontSize="30" HorizontalAlignment="Left" Margin="40,635,0,0" VerticalAlignment="Top" Height="50" Width="200" Click="ReturnButton"/>
+
+        <Button Name="startAllRunner" Content="Commencer pour tous" FontSize="30" HorizontalAlignment="Left" Margin="131,103,0,0" VerticalAlignment="Top" Height="58" Width="400" Click="startAll"/>
+        
+        <ListView HorizontalAlignment="Center" 
+                  Background="CadetBlue" Height="432" Margin="0,179,0,0" 
+                  VerticalAlignment="Top" Width="1019"
+                  Name = "deviceList">
+            <ListView.ItemTemplate>
+
+                <DataTemplate x:Name="DoubleLineDataTemplate">
+                    <Grid Height="64">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,0,0,0" Grid.Column="0">
+                            <TextBlock Text="{Binding HumanName}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                            <TextBlock Text="{Binding BleName}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                        </StackPanel>
+                        <CheckBox Grid.Column="2"/>
+                        <Button Name="start" Content="Commencer la course" Tag="{Binding BleID}" Background="Aquamarine" FontSize="18" Margin="5,0,0,0" Grid.Column="3" Click="startRunner"/>
+                        <TextBlock Name="state" Text="Course non démarrée" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Margin="5,0,0,0" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Grid.Column="5"/>
+                        <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="5,0,0,0" Grid.Column="6">
+                            <TextBlock Text="Dernier Temps : "  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+                            <TextBlock Name="laps" Text="00:0.0"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+                        </StackPanel>
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>
