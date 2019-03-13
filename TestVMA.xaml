@@ -27,20 +27,20 @@
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="200" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="200" />
-                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="180" />
+                            <ColumnDefinition Width="250" />
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,0,0,0" Grid.Column="0">
                             <TextBlock Text="{Binding HumanName}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
                             <TextBlock Text="{Binding BleName}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
-                        </StackPanel>
-                        <CheckBox Grid.Column="2"/>
+                        </StackPanel>                        
+                        <CheckBox Name="Checkbox" Grid.Column="2" Tag="{Binding BleID}" Checked="Checkbox_Checked" Unchecked="Checkbox_Unchecked"/>
                         <Button Name="start" Content="Commencer la course" Tag="{Binding BleID}" Background="Aquamarine" FontSize="18" Margin="5,0,0,0" Grid.Column="3" Click="startRunner"/>
                         <TextBlock Name="state" Text="Course non démarrée" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Margin="5,0,0,0" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Grid.Column="5"/>
                         <StackPanel Orientation="Horizontal"  VerticalAlignment="Center" Margin="5,0,0,0" Grid.Column="6">
-                            <TextBlock Text="Dernier Temps : "  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
+                            <TextBlock Text="Temps : "  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
                             <TextBlock Name="laps" Text="00:0.0"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}"/>
                         </StackPanel>
                         

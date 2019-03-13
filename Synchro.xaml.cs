@@ -46,6 +46,67 @@ namespace VMALE
         }
 
 
+        private void modifyName(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Grid g = ((StackPanel)b.Parent).Parent as Grid;
+
+            StackPanel buttons = g.FindName("Buttons") as StackPanel;
+            StackPanel deviceInfo = g.FindName("DeviceInfo") as StackPanel;
+
+            TextBox tbox = deviceInfo.FindName("HumanNameTextChange") as TextBox;
+            TextBlock tblock = deviceInfo.FindName("HumanNameText") as TextBlock;
+
+            tbox.Visibility = Visibility.Visible;
+            tblock.Visibility = Visibility.Collapsed;
+
+            Button modifier = buttons.FindName("Modifier") as Button;
+            Button valider = buttons.FindName("Valider") as Button;
+
+            modifier.Visibility = Visibility.Collapsed;
+            valider.Visibility = Visibility.Visible;
+        }
+
+
+        private void validateNewName(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Grid g = ((StackPanel)b.Parent).Parent as Grid;
+
+            StackPanel buttons = g.FindName("Buttons") as StackPanel;
+            StackPanel deviceInfo = g.FindName("DeviceInfo") as StackPanel;
+
+            TextBox tbox = deviceInfo.FindName("HumanNameTextChange") as TextBox;
+            TextBlock tblock = deviceInfo.FindName("HumanNameText") as TextBlock;
+
+            String id = b.Tag as String;
+            Device d = BleDevices.Instance.findRegisteredById(id);
+            d.HumanName = tbox.Text;
+            tblock.Text = d.HumanName;
+            
+            tbox.Visibility = Visibility.Collapsed;
+            tblock.Visibility = Visibility.Visible;
+
+            Button modifier = buttons.FindName("Modifier") as Button;
+            Button valider = buttons.FindName("Valider") as Button;
+
+            modifier.Visibility = Visibility.Visible;
+            valider.Visibility = Visibility.Collapsed;
+        }
+
+        private void removeDevice(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            Grid g = ((StackPanel)b.Parent).Parent as Grid;
+
+            String id = b.Tag as String;
+            Device d = BleDevices.Instance.findRegisteredById(id);
+
+            BleDevices.Instance.getRegister().Remove(d);
+            deviceList.Items.Remove(d);
+        }
+
+
         private void searchDevice(object sender, RoutedEventArgs e)
         {
             startSearch.Visibility = Visibility.Collapsed;
@@ -237,5 +298,6 @@ namespace VMALE
         }
 
         #endregion
+
     }
 }

@@ -26,15 +26,17 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,0,0,0" Grid.Column="0">
-                            <TextBlock Text="{Binding HumanName}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                        <StackPanel Name="DeviceInfo" Orientation="Vertical" VerticalAlignment="Center" Margin="12,0,0,0" Grid.Column="0">
+                            <TextBlock Name="HumanNameText" Text="{Binding HumanName}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                            <TextBox Name="HumanNameTextChange" Text="{Binding HumanName}" Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" Visibility="Collapsed"/>
                             <TextBlock Text="{Binding BleName}" Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="3">
+                        <StackPanel Name="Buttons" Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="3">
                             <Button Name="Connect" Content="Se connecter" Tag="{Binding BleID}" Background="Aquamarine" FontSize="18" Margin="5,0,0,0" Click="connect"/>
                             <Button Name="Disconnect" Visibility="Collapsed" Content="Se déconnecter" Tag="{Binding BleID}" Background="AliceBlue" FontSize="18" Margin="5,0,0,0" Click="disconnect"/>
-                            <Button Content="Modifier" Background="DarkSeaGreen" FontSize="18" Margin="5,0,0,0"/>
-                            <Button Content="Supprimer" Background="IndianRed" FontSize="18" Margin="5,0,0,0"/>
+                            <Button Name="Modifier" Content="Modifier" Background="DarkSeaGreen" FontSize="18" Margin="5,0,0,0" Click="modifyName"/>
+                            <Button Name="Valider" Content="Valider" Visibility="Collapsed" Background="LawnGreen" FontSize="18" Margin="5,0,0,0" Tag="{Binding BleID}" Click="validateNewName"/>
+                            <Button Content="Supprimer" Tag="{Binding BleID}" Background="IndianRed" FontSize="18" Margin="5,0,0,0" Click="removeDevice"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

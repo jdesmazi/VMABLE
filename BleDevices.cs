@@ -8,15 +8,22 @@ using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml.Controls;
 
 namespace VMALE
 {
     class Device
     {
+        public static int maxLaps = 3;
+
         public string HumanName { get; set; }
         public string BleName { get; set; }
         public string BleID { get; set; }
+        public Boolean firstDetection = false;
         public List<DateTime> lapsTimes { get; set; } = new List<DateTime>();
+
+        public TextBlock stateText = null;
+        public TextBlock lapsText = null;
 
         public Device() { }
 
